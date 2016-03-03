@@ -7,7 +7,7 @@ best <- function(state, outcome){
 
   ## Check that state and outcome are valid
   if (!state %in% medicare_outcomes$State) {
-    stop("invalid state")
+    stop("Invalid state.")
   }
   ## Return hospital name in that state with lowest 30-day death rate
   medicare_outcomes <- medicare_outcomes[medicare_outcomes$State==state,]
@@ -18,7 +18,7 @@ best <- function(state, outcome){
   } else if (outcome == 'pneumonia') {
     death <- as.numeric(medicare_outcomes[,23])
   } else {
-    stop("invalid outcome")
+    stop("Invalid outcome.")
   }
   ## Row number(s) of best hospital
   best_hospital <- which(death == min(death, na.rm=T))
