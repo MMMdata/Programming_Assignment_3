@@ -1,14 +1,14 @@
 rankhospital <- function(state, outcome, num = "best") {
-  ## Read outcome data. Set class of columns to character
+  ## Read outcome data. Set class of columns to character.
 	medicare_outcomes <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
-	
-  ## Order medicare_outcomes alphabetically ascending, just in case there's a tie for best hospital.
-  # medicare_outcomes <- medicare_outcomes[order(medicare_outcomes$Hospital.Name),]
 
   ## Check that state is valid
   if (!state %in% medicare_outcomes$State) {
     stop("Invalid state.")
   }
+  
+  ## Select only the rows of the state from the function argument.
+  medicare_outcomes <- medicare_outcomes[medicare_outcomes$State==state,]
   
   ## Check that the outcome is valid
   if (outcome == 'heart attack') {
@@ -20,12 +20,9 @@ rankhospital <- function(state, outcome, num = "best") {
   } else {
     stop("Invalid outcome.")
   }
-
-  ## Return hospital name in that state with the given rank
-  medicare_outcomes <- medicare_outcomes[medicare_outcomes$State==state,]
 	
-  ## 30-day death rate - determine best, worse, or if argument is invalid or no resuts: NA
-	death_rank <- rank(death, na.last=NA)
+  ## 30-day death rate - determine best, worst, or if argument is invalid or no resuts: NA
+  death_rank <- rank(death, na.last=NA)
   
   if (num=="best") {
     best_worst <- 1
@@ -36,6 +33,6 @@ rankhospital <- function(state, outcome, num = "best") {
   } else {
     return(NA)
   }
-
+  ## Return hospital name in that state with the given rank
   return(medicare_outcomes$Hospital.Name[order(death, medicare_outcomes$Hospital.Name)[best_worst]])
 }
