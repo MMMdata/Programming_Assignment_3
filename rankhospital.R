@@ -1,6 +1,6 @@
 rankhospital <- function(state, outcome, num = "best") {
   ## Read outcome data. Set class of columns to character
-	outcomes_medicare <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+	medicare_outcomes <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
 	
   ## Order medicare_outcomes alphabetically ascending, just in case there's a tie for best hospital.
   medicare_outcomes <- medicare_outcomes[order(medicare_outcomes$Hospital.Name),]

@@ -5,7 +5,7 @@ best <- function(state, outcome){
   ## Order medicare_outcomes alphabetically ascending, just in case there's a tie for best hospital.
   medicare_outcomes <- medicare_outcomes[order(medicare_outcomes$Hospital.Name),]
 
-  ## Check that state and outcome are valid
+  ## Check that state is valid
   if (!state %in% medicare_outcomes$State) {
     stop("Invalid state.")
   }
