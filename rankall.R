@@ -1,7 +1,7 @@
 rankall <- function(outcome, num = "best") {
 ## Read outcome data, separate state column.
-  outcomes_medicare <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
-  state <- outcomes_medicare$State
+  medicare_outcomes <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+  state <- medicare_outcomes$State
   hospital <- rep("", length(state))
 
   ## Order medicare_outcomes and State column alphabetically ascending, just in case there's a tie for best hospital/state.
@@ -47,7 +47,7 @@ rankall <- function(outcome, num = "best") {
   if (is.na(r)) {
       hospital[i] <- NA
     } else {
-      hospital[i] <- medicare_outcomes_states$Hospital.Name[order(death, medicare_outcomes_states$Hospital.Name)[r]]
+      hospital[i] <- medicare_outcomes_states$Hospital.Name[order(death, medicare_outcomes_states$Hospital.Name)[best_worst]]
     }
   }
 
