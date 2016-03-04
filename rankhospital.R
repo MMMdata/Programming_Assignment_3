@@ -37,5 +37,5 @@ rankhospital <- function(state, outcome, num = "best") {
     return(NA)
   }
 
-  return(data$Hospital.Name[order(death, data$Hospital.Name)[r]])
+  return(medicare_outcomes$Hospital.Name[order(death, medicare_outcomes$Hospital.Name)[r]])
 }
