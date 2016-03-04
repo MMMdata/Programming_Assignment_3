@@ -5,7 +5,7 @@ rankall <- function(outcome, num = "best") {
   hospital <- rep("", length(state))
 
   ## Order medicare_outcomes and State column alphabetically ascending, just in case there's a tie for best hospital/state.
-  medicare_outcomes <- medicare_outcomes[order(medicare_outcomes$Hospital.Name)]
+  medicare_outcomes <- medicare_outcomes[order(medicare_outcomes$Hospital.Name),]
   state <-sort(unique(state))
 
   ## Return hospital name in that state with the given rank
